@@ -56,19 +56,26 @@ export default function RestaurantScreen({ params }: { params: Promise<{ id: str
 
   return (
     <main className="mx-auto max-w-[560px] px-6 py-16 pb-32">
-      {/* 0. A quiet burrito illustration to open the page, house palette, flat SVG */}
-      <img src="/burrito.svg" alt="An illustrated Ludhiana-style burrito" className="mb-10 w-full rounded-xl" />
-
-      {/* 1. The restaurant: name on top, cuisine + area underneath in small muted text */}
-      <h1 className="text-2xl font-semibold tracking-tight">{data!.name}</h1>
-      <p className="mt-1 text-sm text-muted">
-        {data!.cuisine}, {data!.area}
-      </p>
+      {/* 1. The restaurant: small burrito icon beside the name; cuisine and area each on their own line */}
+      <header className="flex items-center gap-4">
+        <img
+          src="/burrito.svg"
+          alt="An illustrated Ludhiana-style burrito"
+          className="h-16 w-16 shrink-0 rounded-lg border border-stone-200"
+        />
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">{data!.name}</h1>
+          <p className="mt-0.5 text-sm text-muted">{data!.cuisine}</p>
+          <p className="text-sm text-muted">{data!.area}</p>
+        </div>
+      </header>
+      <hr className="mt-8 border-stone-200" />
 
       {/* 2. The average rating: the biggest thing on the page, out of 5, count beside it.
+          Green — because 4.4 is good news, and red would read as danger.
           THE LINE: printed as received. "/5" is printed text — still no calculation here. */}
-      <div className="mt-10 flex items-end gap-2">
-        <span className="text-6xl font-semibold tracking-tight text-accent">
+      <div className="mt-8 flex items-end gap-2">
+        <span className="text-6xl font-semibold tracking-tight text-green-700">
           {data!.averageRating ?? "—"}
         </span>
         {data!.averageRating !== null && (
@@ -83,7 +90,7 @@ export default function RestaurantScreen({ params }: { params: Promise<{ id: str
         <>
           {/* 3. The latest review, visually set apart */}
           <section className="mt-10 rounded-lg border-l-2 border-accent bg-accent-soft px-5 py-4">
-            <p className="text-xs uppercase tracking-wide text-accent">Latest</p>
+            <p className="text-xs uppercase tracking-wide text-accent">Latest review</p>
             <p className="mt-2 text-lg">{data!.latestReview!.comment}</p>
             <p className="mt-3 text-sm text-muted">
               <Stars count={data!.latestReview!.rating} /> {" · "}
