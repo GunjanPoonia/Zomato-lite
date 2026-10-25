@@ -56,35 +56,35 @@ export default function RestaurantScreen({ params }: { params: Promise<{ id: str
 
   return (
     <main className="mx-auto max-w-[560px] px-6 py-16 pb-32">
-      {/* 1. The restaurant: small burrito icon beside the name; cuisine and area each on their own line */}
-      <header className="flex items-center gap-4">
-        <img
-          src="/burrito.svg"
-          alt="An illustrated Ludhiana-style burrito"
-          className="h-16 w-16 shrink-0 rounded-lg border border-stone-200"
-        />
+      {/* 0. A real burrito photo, full content width, height matched to the details block below */}
+      <img
+        src="/burrito.jpg"
+        alt="A Ludhiana-style burrito"
+        className="h-32 w-full rounded-lg object-cover"
+      />
+
+      {/* 1. Details on the left (location above cuisine), rating on the right */}
+      <div className="mt-5 flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">{data!.name}</h1>
-          <p className="mt-0.5 text-sm text-muted">{data!.cuisine}</p>
-          <p className="text-sm text-muted">{data!.area}</p>
+          <p className="mt-1 text-sm text-muted">{data!.area}</p>
+          <p className="text-sm text-muted">{data!.cuisine}</p>
         </div>
-      </header>
-      <hr className="mt-8 border-stone-200" />
-
-      {/* 2. The average rating: the biggest thing on the page, out of 5, count beside it.
-          Green — because 4.4 is good news, and red would read as danger.
-          THE LINE: printed as received. "/5" is printed text — still no calculation here. */}
-      <div className="mt-8 flex items-end gap-2">
-        <span className="text-6xl font-semibold tracking-tight text-green-700">
-          {data!.averageRating ?? "—"}
-        </span>
-        {data!.averageRating !== null && (
-          <span className="pb-2 text-2xl font-medium text-muted">/5</span>
-        )}
-        <span className="mb-1 ml-2 pb-2 text-sm text-muted">
-          {data!.totalReviews} {data!.totalReviews === 1 ? "review" : "reviews"}
-        </span>
+        <div className="shrink-0 text-right">
+          <div className="flex items-baseline justify-end gap-1">
+            <span className="text-5xl font-semibold tracking-tight text-green-700">
+              {data!.averageRating ?? "—"}
+            </span>
+            {data!.averageRating !== null && (
+              <span className="text-xl font-medium text-muted">/5</span>
+            )}
+          </div>
+          <p className="mt-1 text-sm text-muted">
+            {data!.totalReviews} {data!.totalReviews === 1 ? "review" : "reviews"}
+          </p>
+        </div>
       </div>
+      <hr className="mt-6 border-stone-200" />
 
       {data!.totalReviews > 0 ? (
         <>
