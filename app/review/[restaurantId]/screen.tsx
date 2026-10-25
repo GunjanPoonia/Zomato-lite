@@ -74,7 +74,7 @@ export default function ReviewScreen({ params }: { params: Promise<{ restaurantI
       <h1 className="text-2xl font-semibold tracking-tight">
         {restaurantName ?? "Review"}
       </h1>
-      <p className="mt-2 text-muted">How was it? Be honest — the average only works if you are.</p>
+      <p className="mt-2 text-muted">How was it? Every review counts!</p>
 
       <div className="mt-10">
         <label className="text-sm font-medium">Rating</label>

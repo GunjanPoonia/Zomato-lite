@@ -55,20 +55,26 @@ export default function RestaurantScreen({ params }: { params: Promise<{ id: str
   }
 
   return (
-    <main className="mx-auto max-w-[560px] px-6 py-16">
+    <main className="mx-auto max-w-[560px] px-6 py-16 pb-32">
+      {/* 0. A quiet burrito illustration to open the page, house palette, flat SVG */}
+      <img src="/burrito.svg" alt="An illustrated Ludhiana-style burrito" className="mb-10 w-full rounded-xl" />
+
       {/* 1. The restaurant: name on top, cuisine + area underneath in small muted text */}
       <h1 className="text-2xl font-semibold tracking-tight">{data!.name}</h1>
       <p className="mt-1 text-sm text-muted">
         {data!.cuisine}, {data!.area}
       </p>
 
-      {/* 2. The average rating: the biggest thing on the page, with the count beside it.
-          THE LINE: printed as received. If this looks right, the backend did the math. */}
-      <div className="mt-10 flex items-end gap-3">
-        <span className="text-6xl font-semibold tracking-tight">
+      {/* 2. The average rating: the biggest thing on the page, out of 5, count beside it.
+          THE LINE: printed as received. "/5" is printed text — still no calculation here. */}
+      <div className="mt-10 flex items-end gap-2">
+        <span className="text-6xl font-semibold tracking-tight text-accent">
           {data!.averageRating ?? "—"}
         </span>
-        <span className="pb-2 text-sm text-muted">
+        {data!.averageRating !== null && (
+          <span className="pb-2 text-2xl font-medium text-muted">/5</span>
+        )}
+        <span className="mb-1 ml-2 pb-2 text-sm text-muted">
           {data!.totalReviews} {data!.totalReviews === 1 ? "review" : "reviews"}
         </span>
       </div>
@@ -109,13 +115,17 @@ export default function RestaurantScreen({ params }: { params: Promise<{ id: str
         </section>
       )}
 
-      {/* 5. The link that starts it all */}
-      <Link
-        href={`/review/${id}`}
-        className="mt-10 inline-block rounded-lg bg-accent px-6 py-3 text-white"
-      >
-        Write a review
-      </Link>
+      {/* 5. The only action — pinned to the bottom of the screen, no scrolling needed */}
+      <footer className="fixed bottom-0 left-0 right-0 z-10 border-t border-stone-200 bg-background px-6 py-4">
+        <div className="mx-auto max-w-[560px]">
+          <Link
+            href={`/review/${id}`}
+            className="block rounded-lg bg-accent px-6 py-3 text-center text-white"
+          >
+            Write a review
+          </Link>
+        </div>
+      </footer>
     </main>
   );
 }

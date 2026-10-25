@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+  <!-- House palette only: accent-soft bg, warm tortilla, flat fills, no gradients, no shadows -->
+  <rect width="400" height="240" rx="18" fill="#FEF3EF"/>
+  <g transform="rotate(-20 200 120)">
+    <!-- the wrap itself -->
+    <rect x="105" y="72" width="185" height="96" rx="48" fill="#F2C993"/>
+    <!-- grill seams -->
+    <path d="M122 90 Q 200 76 278 92" stroke="#DFA96F" stroke-width="3" fill="none" opacity="0.8"/>
+    <path d="M120 152 Q 200 168 280 150" stroke="#DFA96F" stroke-width="3" fill="none" opacity="0.8"/>
+    <!-- the open end, with the filling peeking out -->
+    <ellipse cx="292" cy="120" rx="15" ry="47" fill="#F8DFB2"/>
+    <circle cx="292" cy="98" r="6" fill="#7FB069"/>
+    <circle cx="293" cy="122" r="6" fill="#E76F51"/>
+    <circle cx="292" cy="144" r="6" fill="#FFF7EC"/>
+  </g>
+  <!-- a quiet table line under everything, flat and unhurried -->
+  <line x1="90" y1="204" x2="310" y2="204" stroke="#EAD8CC" stroke-width="4" stroke-linecap="round"/>
+</svg>
